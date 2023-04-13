@@ -16,7 +16,9 @@ function HomePage() {
 <div className="container">
   <div className="cover-text align-middle">
     <br/>
-    <img src="https://hth.world/wp-content/themes/HTHworldwide/images/hthlogo_md.png"/>
+     <div className="center">
+  <img src="https://hth.world/wp-content/themes/HTHworldwide/images/hthlogo_md.png" alt="HTH Logo"/>
+     </div>
     <br/>
     Help The Homeless Worldwide fully believes in their journey and knows with the help
     <br/>
