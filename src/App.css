@@ -1,0 +1,683 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 30vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.pb-10 {
+    padding-bottom: 3.4rem;
+}
+
+form.bg-white {
+  background-color: #5B5B5B;
+  box-shadow: 0 4px 8px 0 #000;
+}
+
+form.bg-white.shadow-md {
+  box-shadow: 0 4px 8px 0 #000;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+
+@media screen and (max-width: 768px) {
+/* Add any mobile-specific styles here */
+.App-logo {
+height: 20vmin;
+}
+}
+
+/* Use 'vw' instead of 'vmin' for more consistent sizing across devices */
+.App-logo {
+height: 40vw;
+max-height: 150px;
+pointer-events: none;
+}
+
+/* Use a fallback font for devices that do not support the custom font */
+font-family: 'CursiveFont', cursive;
+
+.App {
+font-family: 'Kalam', cursive;
+text-align: center;
+font-size: 1.2rem; /* Adjust font size as needed for mobile */
+}
+
+/* Reduce animation time for better mobile performance */
+@media (prefers-reduced-motion: no-preference) {
+.App-logo {
+animation: App-logo-spin infinite 10s linear;
+}
+}
+
+/* Add more mobile-specific styles as needed */
+
+.App-link {
+color: #61dafb;
+text-decoration: none;
+font-weight: bold;
+margin-top: 10px;
+display: felx;
+align-items: center;
+justify-content: center; /* center vertically */
+padding: 10px 15px;
+border-radius: 5px;
+background-color: #fff;
+}
+
+.App-link:hover {
+background-color: #61dafb;
+color: #fff;
+}
+
+
+/* Set background color to medium dark grey */
+body {
+  background-color: #333;
+}
+
+/* Set font color to bold white */
+
+body, h1, h2, h4, h6, li {
+  color: #debf12;
+  font-weight: bold;
+  font-family: 'Kalam', cursive;
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  body, h1, h2, h4, h6, li {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+}
+
+h2, h3, p {
+  color: #34bcaa;
+  text-align: center;
+  font-family: 'Kalam', cursive;
+}
+
+h5 {
+  color: #34bcaa;
+  font-size: 30px;
+  font-family: 'Kalam', cursive;
+  text-align: center;
+}
+
+label {
+
+  color: #34bcaa;
+
+}
+ p, li {
+  color: #34bcaa;
+  font-weight: bold;
+
+}
+
+.button {
+  text-decoration: none;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  max-width: 200px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin: 0 auto;
+
+}
+
+/* Set container background color to light grey */
+.container {
+  background-color: #5B5B5B;
+  box-shadow: 0px 0px 10px 2px #34bcaa, 0px 0px 10px 2px #debf12;
+  border-radius: 10px;
+  margin: auto; /* center horizontally */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 54%; /* full width */
+  height: auto; /* set height to auto for mobile devices */
+  justify-content: center; /* center vertically */
+  max-width: 1000px; /* set a maximum width */
+}
+
+/* Set sunken depth look */
+.container h1, .container h2, .container h3, .container h4, .container h5, .container h6, .container p, .container li {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.container h1, .container h2, .container h3, .container h4, .container h5, .container h6 {
+  text-shadow: 2px 2px #222222;
+}
+
+.container p, .container li {
+  text-shadow: 1px 1px #222222;
+}
+
+/* Media query for smaller devices */
+@media only screen and (max-width: 600px) {
+  .container {
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 2;
+    box-shadow: none;
+  }
+}
+
+/***** Card Styles *****/
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.card {
+  background-color: #5B5B5B;
+  box-shadow: 0 4px 8px 0 #000;
+  max-width: 80%;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.card h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #34bcaa;
+}
+
+
+.card button:hover {
+  background-color: #0069d9;
+  box-shadow: 0 4px 8px 0 #000;
+}
+
+/* Set styles for mobile devices */
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 16px;
+  }
+
+  .card-container {
+    max-width: 100%;
+    margin: 10px 0;
+    padding: 0;
+    min-width: 300px;
+  }
+
+  .card {
+    max-width: 100%;
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .card h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+
+  .card p {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .card button {
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+}
+
+/****** End Card Styles ********/
+
+/*** Home Page Styles ***/
+
+.home-page .card-container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.home-page .card {
+  flex: 0 0 auto;
+  margin-right: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 4px 4px 4px #000;
+  background-color: #fff;
+  padding: 20px;
+}
+
+.home-page .card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.home-page .card-text {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+/* Set styles for mobile devices */
+@media only screen and (max-width: 767px) {
+  .home-page .card-container {
+    flex-wrap: wrap;
+    overflow-x: hidden;
+  }
+
+  .home-page .card {
+    flex: 0 0 auto;
+    margin-right: 0;
+    margin-bottom: 20px;
+    border: none;
+    box-shadow: none;
+    background-color: #fff;
+    padding: 20px;
+    width: 100%;
+  }
+
+  .home-page .card:nth-child(even) {
+    margin-left: 0;
+  }
+
+  .home-page .card-title {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+
+  .home-page .card-text {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 768px) {
+  .home-page .card {
+    flex-basis: calc(33.33% - 20px);
+  }
+}
+
+/*** End Home Page Styles ***/
+
+/***** Donate Page Styles *****/
+
+p2 {
+  color: #34bcaa;
+  position: absolute;
+  top: 115%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+p3 {
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.card h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.card .containerDonate {
+  margin-top: 20px;
+}
+
+.card label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.card input {
+  width: 75%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.card button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  max-width: 200px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: #5B5B5B;
+  box-shadow: 0 4px 8px 0 #000;
+  max-width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+@media only screen and (min-width: 481px) {
+  .card {
+    max-width: 50%;
+    margin: 20px auto;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .card {
+    width: 90%;
+    height: auto;
+    position: relative;
+    top: initial;
+    left: initial;
+    transform: none;
+    margin: 20px auto;
+  }
+}
+
+.card button {
+  max-width: 100%;
+  margin: 0px auto;
+}
+
+/**** End Donate Page Styles ****/
+
+/**** Nav Bar Style ****/
+
+.header {
+  background-color: transparent;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 2px 6px #000;
+}
+
+.header nav {
+  max-width: 1024px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border-radius: 30px;
+}
+
+.header nav ul li {
+  position: relative;
+}
+
+.header nav ul li a {
+  display: block;
+  padding: 15px 20px;
+  color: #34bcaa;
+  text-decoration: none;
+  box-shadow: 0 4px 8px 0 #000;
+  border-radius: 30px;
+}
+
+.header nav ul ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: 10px;
+  width: max-content;
+  display: none;
+  background-color: #333;
+}
+
+.header nav ul ul li {
+  position: relative;
+  line-height: 1.5;
+}
+
+.header nav ul ul li a {
+  position: relative;
+  color: #000;
+  padding: 10px 20px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}
+
+.header nav ul li:hover > a {
+  background-color: transparent;
+}
+
+.header nav ul li:hover > ul {
+  display: block;
+}
+
+.header nav ul ul li:hover > a {
+  background-color: transparent;
+  color: #34bcaa;
+}
+
+.header nav ul ul ul {
+  top: 0;
+  left: 100%;
+  margin-left: 0px;
+}
+
+/**** End Nav Bar ****/
+
+
+/**** Fundraisers ****/
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
+label {
+  margin-bottom: 0.5rem;
+}
+
+button:hover {
+  background-color: #0069d9;
+}
+
+input[type="number"],
+input[type="text"] {
+  padding: 0.5rem;
+  border: 2px solid #ccc;
+  box-shadow: 0 4px 8px 0 #000;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+  width: 50%;
+}
+
+/**** Create Fundraiser Styles ****/
+
+.create-campaign {
+  background-color: #5B5B5B;
+  box-shadow: 0px 2px 6px #000;
+  padding: 1.5rem;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 600px;
+  max-height: calc(100vh - 50px); /* 50px is an example of a height of a footer */
+  overflow-y: auto;
+}
+
+@media only screen and (max-width: 767px) {
+  .create-campaign {
+    top: 70%;
+    width: 75%;
+    max-width: none;
+  }
+}
+
+.create-campaign form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.create-campaign label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.create-campaign input[type="text"],
+.create-campaign input[type="datetime-local"],
+.create-campaign input[type="number"] {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 1rem;
+  width: 75%;
+  max-width: 500px;
+  box-shadow: 0 4px 8px 0 #000;
+}
+
+.create-campaign button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  max-width: 200px;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  box-shadow: 0 4px 8px 0 #000;
+}
+
+@media only screen and (min-width: 768px) {
+  .create-campaign {
+    width: 50%;
+    max-width: 500px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .create-campaign {
+    width: 40%;
+    max-width: 600px;
+  }
+}
+/**** End Fundraisers ****/
+
+/**** Profiles Styles ****/
+
+.profile-card {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #5B5B5B;
+  box-shadow: 0 4px 8px 0 #000;
+  max-width: 80%;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/**** End Profile Style ****/
+
+/***** Footer Styles ******/
+
+.social-icons a {
+  margin-right: 10px;
+  color: #34bcaa;
+}
+
+/***** End Footer Styles *****/
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
