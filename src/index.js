@@ -17,7 +17,7 @@ import FAQPage from './components/FAQPage';
 import DonatePage from './components/DonatePage';
 import CreateCampaign from './components/CreateCampaign';
 import AllFundraisers from './components/AllFundraisers';
-import NFTPage from './components/NFTpage';
+import NFTPage from './components/NFTPage';
 import NFTTile from './components/NFTTile';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -32,7 +32,7 @@ root.render(
           <Route path="/create-fundraiser" element={<CreateCampaign />} />
           <Route path="/fundraiser-stats" element={<AllFundraisers />} />
           <Route path="/market" element={<Marketplace />}/>
-          <Route path="/nftPage" element={<NFTPage />}/>   
+          <Route path="/nftPage" element={<NFTPage />} />   
           <Route path="/nftTile" element={<NFTTile />}/>       
           <Route path="/profile" element={<Profile />}/>
           <Route path="/sellNFT" element={<SellNFT />}/>
