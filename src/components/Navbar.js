@@ -93,13 +93,10 @@ function Navbar() {
             <Link to="/donate">Donate</Link>
           </li>
           <li className="dropdown">
-            <a href="#">Fundraisers</a>
+            <a href="/fundraiser-stats">Fundraisers</a>
             <ul>
               <li>
-                <Link to="/create-fundraiser">Create Fundraiser</Link>
-              </li>
-              <li>
-                <Link to="/fundraiser-stats">Statistics</Link>
+                <Link to="/create-fundraiser">Create A Fundraiser</Link>
               </li>
             </ul>
           </li>
