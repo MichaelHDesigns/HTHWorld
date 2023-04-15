@@ -6,6 +6,9 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import NFTTile from "./NFTTile";
 import Web3 from 'web3';
+import { useWeb3React } from "@web3-react/core";
+import { uploadJSONToIPFS } from "../pinata";
+
 
 
 export default function Profile ({ profile }) {
@@ -14,7 +17,6 @@ export default function Profile ({ profile }) {
     const [address, updateAddress] = useState("0x");
     const [totalPrice, updateTotalPrice] = useState("0");
     const [selectedNft, setSelectedNft] = useState(data.length > 0 ? data[0].image : null);
- 
 
 
     async function getNFTData(tokenId) {
@@ -74,6 +76,7 @@ const handleNftChange = (e) => {
 
 
     return (
+<div>
         <div className="profileClass" style={{"minHeight":"100vh"}}>
             <Navbar></Navbar>
 
@@ -103,15 +106,7 @@ const handleNftChange = (e) => {
       </div>
     </div>
 
-<div>
-  <div className="profileWrapper">
-            <div className="flex text-center flex-col mt-11 md:text-1xl text-white">
-                <div className="mb-5">
-                    <h2 className="font-bold">Wallet Address</h2>  
-                    {address}
-                </div>
-            </div>
-</div>
+
 
 
 
@@ -138,6 +133,5 @@ const handleNftChange = (e) => {
             </div>
             </div>
         </div>
-
     )
 };
