@@ -26,6 +26,13 @@ form.bg-white.shadow-md {
   box-shadow: 0 4px 8px 0 #000;
 }
 
+.connect-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 20%;
+}
+
 .center {
   display: flex;
   justify-content: center;
@@ -470,7 +477,7 @@ p3 {
 
 .header nav {
   max-width: 1024px;
-  width: 100%;
+  width: 70%;
   height: 100%;
   margin: 0 auto;
   display: flex;
