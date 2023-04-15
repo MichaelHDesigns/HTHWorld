@@ -14,16 +14,16 @@ function FaqPage() {
 
   const faqItems = [
     {
-      question: 'Question 1?',
-      answer: 'Answer 1.',
+      question: 'What is HTH World ?',
+      answer: 'HTH World is a registered nonprofit helping those who are less fortunate',
     },
     {
-      question: 'Question 2?',
-      answer: 'Answer 2.',
+      question: 'What is HTHW ?',
+      answer: 'HTHW is our native token, commonly known as cryptocurrency, HTHW is like Ethereuem',
     },
     {
-      question: 'Question 3?',
-      answer: 'Answer 3.',
+      question: 'Do you actually help those who are less fortunate ?',
+      answer: 'YES!! HTH is committed to helping those who need assistance, HTH has already held several events and donated to those in need',
     },
   ];
 

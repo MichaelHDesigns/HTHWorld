@@ -162,6 +162,11 @@ label {
 
 }
 
+.button:hover {
+background-color: #007bff;
+  box-shadow: 0 4px 8px 0 #000;
+}
+
 /* Set container background color to light grey */
 .container {
   background-color: #5B5B5B;
@@ -237,7 +242,7 @@ label {
 
 
 .card button:hover {
-  background-color: transparent;
+  background-color: #007bff;
   box-shadow: 0 4px 8px 0 #000;
 }
 
