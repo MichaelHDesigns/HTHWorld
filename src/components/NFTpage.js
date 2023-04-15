@@ -72,11 +72,11 @@ async function buyNFT(tokenId) {
         getNFTData(tokenId);
 
     return(
-        <div style={{"min-height":"100vh"}}>
+        <div style={{"minHeight":"100vh"}}>
             <Navbar></Navbar>
             <div className="flex ml-20 mt-20">
                 <img src={data.image} alt="" className="w-2/5" />
-                <div className="text-xl ml-20 space-y-8 text-white shadow-2xl rounded-lg border-2 p-5">
+                <div className="sell text-xl ml-20 space-y-8  shadow-2xl rounded-lg border-2 p-5">
                     <div>
                         Name: {data.name}
                     </div>
@@ -84,7 +84,7 @@ async function buyNFT(tokenId) {
                         Description: {data.description}
                     </div>
                     <div>
-                        Price: <span className="">{data.price + " ETH"}</span>
+                        Price: <span className="">{data.price + " HTHW"}</span>
                     </div>
                     <div>
                         Owner: <span className="text-sm">{data.owner}</span>

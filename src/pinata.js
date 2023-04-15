@@ -1,3 +1,4 @@
+//require('dotenv').config();
 const key = process.env.REACT_APP_PINATA_KEY;
 const secret = process.env.REACT_APP_PINATA_SECRET;
 
@@ -12,7 +13,6 @@ export const uploadJSONToIPFS = async(JSONBody) => {
             headers: {
                 pinata_api_key: key,
                 pinata_secret_api_key: secret,
-                'Access-Control-Allow-Origin': '*'
             }
         })
         .then(function (response) {
@@ -71,7 +71,6 @@ export const uploadFileToIPFS = async(file) => {
                 'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
                 pinata_api_key: key,
                 pinata_secret_api_key: secret,
-                'Access-Control-Allow-Origin': '*'
             }
         })
         .then(function (response) {

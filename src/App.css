@@ -47,6 +47,9 @@ form.bg-white.shadow-md {
   color: #61dafb;
 }
 
+.sell {
+  color: #34bcaa;
+}
 
 @media screen and (max-width: 768px) {
 /* Add any mobile-specific styles here */
