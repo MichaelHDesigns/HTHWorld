@@ -17,6 +17,56 @@
     padding-bottom: 3.4rem;
 }
 
+.profilePic {
+  max-width: 30%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto; /* this will center the element horizontally */
+}
+
+.mb-5 {
+    margin-bottom: 1.25rem;
+    color:#debf12;
+}
+
+
+.profileWrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  padding: 20px;
+  margin-right: 10px;
+}
+
+.profileImage {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  padding: 20px;
+  margin-right: 10px;
+}
+
+.profileImage img {
+  width: 100px;
+  height: 100px;
+}
+
+select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    background: #5B5B5B;
+    line-height: inherit;
+    color: #34bcaa;
+    margin: 10px;
+    padding: 0;
+}
+
+.profileClass {
+  align-self: flex-end;
+}
+
 form.bg-white {
   background-color: #5B5B5B;
   box-shadow: 0 4px 8px 0 #000;

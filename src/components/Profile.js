@@ -1,15 +1,21 @@
 import Navbar from "./Navbar";
 import { useLocation, useParams } from 'react-router-dom';
 import MarketplaceJSON from "../Marketplace.json";
+import ProfilesJSON from "../abi/Profiles.json";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NFTTile from "./NFTTile";
+import Web3 from 'web3';
 
-export default function Profile () {
+
+export default function Profile ({ profile }) {
     const [data, updateData] = useState([]);
     const [dataFetched, updateFetched] = useState(false);
     const [address, updateAddress] = useState("0x");
     const [totalPrice, updateTotalPrice] = useState("0");
+    const [selectedNft, setSelectedNft] = useState(data.length > 0 ? data[0].image : null);
+ 
+
 
     async function getNFTData(tokenId) {
         const ethers = require("ethers");
@@ -53,6 +59,7 @@ export default function Profile () {
         updateFetched(true);
         updateAddress(addr);
         updateTotalPrice(sumPrice.toPrecision(3));
+        setSelectedNft(items.length > 0 ? items[0].image : null);
     }
 
     const params = useParams();
@@ -60,17 +67,55 @@ export default function Profile () {
     if(!dataFetched)
         getNFTData(tokenId);
 
+const handleNftChange = (e) => {
+    setSelectedNft(e.target.value);
+  };
+
+
+
     return (
         <div className="profileClass" style={{"minHeight":"100vh"}}>
             <Navbar></Navbar>
-            <div className="profileClass">
-            <div className="flex text-center flex-col mt-11 md:text-2xl text-white">
+
+      
+
+
+    <div className="profileImage">
+      <div className="flex text-center flex-col mt-11 md:text-1xl text-white">
+        <div className="mb-5">
+          <h2 className="font-bold">Hello!</h2>
+          {address}
+        </div>
+        {data.length > 0 && (
+          <div className="profilePic">
+            <img src={selectedNft} alt="User's NFT" />
+            <div className="select">
+            <select onChange={handleNftChange}>
+              {data.map((nft, index) => (
+                <option key={index} value={nft.image}>
+                  {nft.name}
+                </option>
+              ))}
+            </select>
+           </div>
+          </div>
+        )}
+      </div>
+    </div>
+
+<div>
+  <div className="profileWrapper">
+            <div className="flex text-center flex-col mt-11 md:text-1xl text-white">
                 <div className="mb-5">
                     <h2 className="font-bold">Wallet Address</h2>  
                     {address}
                 </div>
             </div>
-            <div className="flex flex-row text-center justify-center mt-10 md:text-2xl text-white">
+</div>
+
+
+
+            <div className="flex flex-row text-center justify-center mt-10 md:text-1xl text-white">
                     <div>
                         <h2 className="font-bold">No. of NFTs</h2>
                         {data.length}
@@ -93,5 +138,6 @@ export default function Profile () {
             </div>
             </div>
         </div>
+
     )
 };

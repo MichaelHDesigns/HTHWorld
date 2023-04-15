@@ -6,71 +6,14 @@
 	"output": {
 		"abi": [
 			{
-				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "walletAddress",
-						"type": "address"
-					},
-					{
-						"indexed": true,
-						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
-					}
-				],
-				"name": "NftAdded",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "walletAddress",
-						"type": "address"
-					},
-					{
-						"indexed": true,
-						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
-					}
-				],
-				"name": "NftRemoved",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "walletAddress",
-						"type": "address"
-					},
-					{
-						"indexed": true,
 						"internalType": "string",
-						"name": "username",
+						"name": "content",
 						"type": "string"
 					}
 				],
-				"name": "ProfileUpdated",
-				"type": "event"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_tokenId",
-						"type": "uint256"
-					}
-				],
-				"name": "addNft",
+				"name": "createPost",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -79,65 +22,46 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_walletAddress",
+						"name": "user",
 						"type": "address"
-					}
-				],
-				"name": "getProfile",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "username",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "bio",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "email",
-						"type": "string"
-					},
-					{
-						"internalType": "string[]",
-						"name": "socialLinks",
-						"type": "string[]"
-					},
-					{
-						"internalType": "string",
-						"name": "image",
-						"type": "string"
-					},
-					{
-						"internalType": "address[]",
-						"name": "follows",
-						"type": "address[]"
-					},
-					{
-						"internalType": "uint256[]",
-						"name": "posts",
-						"type": "uint256[]"
-					},
-					{
-						"internalType": "uint256[]",
-						"name": "comments",
-						"type": "uint256[]"
-					},
-					{
-						"internalType": "uint256[]",
-						"name": "nfts",
-						"type": "uint256[]"
-					},
-					{
-						"internalType": "bool",
-						"name": "hasDonated",
-						"type": "bool"
 					},
 					{
 						"internalType": "uint256",
-						"name": "donationAmount",
+						"name": "postNum",
+						"type": "uint256"
+					}
+				],
+				"name": "dislikePost",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "follow",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getNumPosts",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -145,21 +69,82 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "markDonated",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
 						"internalType": "uint256",
-						"name": "_tokenId",
+						"name": "postNum",
 						"type": "uint256"
 					}
 				],
-				"name": "removeNft",
+				"name": "getPost",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "follower",
+						"type": "address"
+					}
+				],
+				"name": "isFollowing",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "postNum",
+						"type": "uint256"
+					}
+				],
+				"name": "likePost",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -167,32 +152,12 @@
 			{
 				"inputs": [
 					{
-						"internalType": "string",
-						"name": "_username",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_bio",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_email",
-						"type": "string"
-					},
-					{
-						"internalType": "string[]",
-						"name": "_socialLinks",
-						"type": "string[]"
-					},
-					{
-						"internalType": "string",
-						"name": "_image",
-						"type": "string"
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
 					}
 				],
-				"name": "updateProfile",
+				"name": "unfollow",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -225,36 +190,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"@openzeppelin/contracts/token/ERC721/IERC721.sol": {
-			"keccak256": "0xab28a56179c1db258c9bf5235b382698cb650debecb51b23d12be9e241374b68",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://daae589a9d6fa7e55f99f86c0a16796ca490f243fb3693632c3711c0646c1d56",
-				"dweb:/ipfs/QmR3zpd7wNw3rcUdekwiv6FYHJqksuTCXLVioTxu6Fbxk3"
-			]
-		},
-		"@openzeppelin/contracts/utils/introspection/IERC165.sol": {
-			"keccak256": "0x447a5f3ddc18419d41ff92b3773fb86471b1db25773e07f877f548918a185bf1",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://be161e54f24e5c6fae81a12db1a8ae87bc5ae1b0ddc805d82a1440a68455088f",
-				"dweb:/ipfs/QmP7C3CHdY9urF4dEMb9wmsp1wMxHF6nhA2yQE5SKiPAdy"
-			]
-		},
 		"Profiles.sol": {
-			"keccak256": "0xd919c7149d12e678f4b6d5c8be91fd873515ec2dc8e5fbf8e3b62103d38f7611",
+			"keccak256": "0xb3fae7c3b311be7cc354272666ec016d0e7babdd283897223282d388ab5872d2",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ca0211601f0ec6a6c8acf5fbd6f7a1826f9c57cf7f34b5018fc3567fe793924b",
-				"dweb:/ipfs/QmXD7TLpkt4qh7ByyZRtxthHy1fCj33pkwXchA2gzFJfJ2"
-			]
-		},
-		"https://raw.githubusercontent.com/MichaelHDesigns/HTHWorld/main/contracts/Donation.sol": {
-			"keccak256": "0xb88efef19c3cd82ed1c3aaecab2307863155e30bf231bce4718741348843b73e",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://dca48353dd7e35644280a603c723c0ad185385884a76adcc1f4150a651fe9bb3",
-				"dweb:/ipfs/QmQbUmCDFqVwcPyX1R4qZcXhrhWVdWKAx6Mt4YB2NPS3jz"
+				"bzz-raw://556f871ece3468621705986139cd10dcdfe4f152544cda0aaf1a627c0caf5d30",
+				"dweb:/ipfs/QmY3T6aTGvp5Wo4NhLccpQ6At6p7YUhbFFXvcyod9p4GY6"
 			]
 		}
 	},
