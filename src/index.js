@@ -11,14 +11,13 @@ import {
 import SellNFT from './components/SellNFT';
 import Marketplace from './components/Marketplace';
 import Profile from './components/Profile';
+import NFTPage from './components/NFTpage';
 import AboutPage from './components/AboutPage';
 import HomePage from './components/HomePage';
 import FAQPage from './components/FAQPage';
 import DonatePage from './components/DonatePage';
 import CreateCampaign from './components/CreateCampaign';
 import AllFundraisers from './components/AllFundraisers';
-import NFTPage from './components/NFTPage';
-import NFTTile from './components/NFTTile';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -31,11 +30,10 @@ root.render(
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/create-fundraiser" element={<CreateCampaign />} />
           <Route path="/fundraiser-stats" element={<AllFundraisers />} />
-          <Route path="/market" element={<Marketplace />}/>
-          <Route path="/nftPage" element={<NFTPage />} />   
-          <Route path="/nftTile" element={<NFTTile />}/>       
-          <Route path="/profile" element={<Profile />}/>
-          <Route path="/sellNFT" element={<SellNFT />}/>
+        <Route path="/market" element={<Marketplace />}/>
+        <Route path="/sellNFT" element={<SellNFT />}/> 
+        <Route path="/nftPage/:tokenId" element={<NFTPage />}/>        
+        <Route path="/profile" element={<Profile />}/> 
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

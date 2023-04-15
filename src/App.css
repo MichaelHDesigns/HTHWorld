@@ -237,7 +237,7 @@ label {
 
 
 .card button:hover {
-  background-color: #0069d9;
+  background-color: transparent;
   box-shadow: 0 4px 8px 0 #000;
 }
 
@@ -555,7 +555,7 @@ label {
 }
 
 button:hover {
-  background-color: #0069d9;
+  background-color: transparent;
 }
 
 input[type="number"],
@@ -680,4 +680,28 @@ input[type="text"] {
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.accordion-button {
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  border: none;
+  background-color: transparent;
+}
+
+.accordion-button:focus {
+  outline: none;
+}
+
+.accordion-button.active {
+  background-color: transparent;
+}
+
+.accordion-body {
+  background-color: #5B5B5B;
+  padding: 1.25rem;
+  border-bottom: 1px solid #e6e6e6;
 }

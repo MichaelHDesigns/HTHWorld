@@ -1,32 +1,57 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Navbar from "./Navbar";
+import React, { useState } from 'react';
+import Navbar from './Navbar';
 
 function FaqPage() {
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const toggleAccordion = (index) => {
+    if (index === activeIndex) {
+      setActiveIndex(null);
+    } else {
+      setActiveIndex(index);
+    }
+  };
+
+  const faqItems = [
+    {
+      question: 'Question 1?',
+      answer: 'Answer 1.',
+    },
+    {
+      question: 'Question 2?',
+      answer: 'Answer 2.',
+    },
+    {
+      question: 'Question 3?',
+      answer: 'Answer 3.',
+    },
+  ];
+
   return (
-    <div>
-<Navbar></Navbar>
-<div>
-<h1>HTH World FAQ's</h1>
-</div>
+    <>
+      <Navbar />
       <div className="container my-5">
         <h1>Frequently Asked Questions</h1>
-        <ul>
-          <li>
-            <h4>Question 1?</h4>
-            <p>Answer 1.</p>
-          </li>
-          <li>
-            <h4>Question 2?</h4>
-            <p>Answer 2.</p>
-          </li>
-          <li>
-            <h4>Question 3?</h4>
-            <p>Answer 3.</p>
-          </li>
-        </ul>
+        <div className="accordion" id="faqAccordion">
+          {faqItems.map((item, index) => (
+            <div className="accordion-item" key={index}>
+              <h2 className="accordion-header" id={`faqHeading${index}`}>
+                <button
+                  className={`accordion-button ${index === activeIndex ? 'active' : ''}`}
+                  type="button"
+                  onClick={() => toggleAccordion(index)}
+                >
+                  {item.question}
+                </button>
+              </h2>
+              {index === activeIndex && (
+                <div className="accordion-body">{item.answer}</div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
