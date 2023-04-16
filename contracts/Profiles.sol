@@ -1,97 +1,126 @@
 // SPDX-License-Identifier: MIT
+
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import "https://raw.githubusercontent.com/MichaelHDesigns/HTHWorld/main/contracts/Donation.sol";
+contract Profile {
+    string public name;
+    string public bio;
+    string public facebook;
+    string public twitter;
+    string public email;
+    string public website;
+    address public owner;
+    mapping(address => bool) public authorizedViewers;
+    mapping(address => bool) public likedBy;
+    mapping(address => bool) public followedBy;
+    mapping(address => string) public comments;
+    mapping(address => uint256) public reputationScores;
 
-contract Profiles {
-    struct Profile {
-        address walletAddress;
-        string username;
-        string bio;
-        string email;
-        string[] socialLinks;
-        string image;
-        address[] follows;
-        uint256[] posts;
-        uint256[] comments;
-        uint256[] nfts;
-        bool hasDonated; // new field to track whether a user has donated
+    constructor(
+        string memory _name, 
+        string memory _bio, 
+        string memory _facebook, 
+        string memory _twitter, 
+        string memory _email,
+        string memory _website
+    ) {
+        name = _name;
+        bio = _bio;
+        facebook = _facebook;
+        twitter = _twitter;
+        email = _email;
+        website = _website;
+        owner = msg.sender;
+        authorizedViewers[owner] = true;
     }
 
-    mapping (address => Profile) private profiles;
-    mapping (uint256 => address) private nftOwners;
-
-    event ProfileUpdated(address indexed walletAddress, string indexed username);
-    event NftAdded(address indexed walletAddress, uint256 indexed tokenId);
-    event NftRemoved(address indexed walletAddress, uint256 indexed tokenId);
-
-    function updateProfile(string memory _username, string memory _bio, string memory _email, string[] memory _socialLinks, string memory _image) public {
-        Profile storage profile = profiles[msg.sender];
-        profile.username = _username;
-        profile.bio = _bio;
-        profile.email = _email;
-        profile.socialLinks = _socialLinks;
-        profile.image = _image;
-        emit ProfileUpdated(msg.sender, _username);
+    modifier onlyOwner {
+        require(msg.sender == owner, "Only the owner can call this function.");
+        _;
     }
 
-    function getProfile(address _walletAddress) public view returns (
-    string memory username,
-    string memory bio,
-    string memory email,
-    string[] memory socialLinks,
-    string memory image,
-    address[] memory follows,
-    uint256[] memory posts,
-    uint256[] memory comments,
-    uint256[] memory nfts,
-    bool hasDonated,
-    uint256 donationAmount // new return value
-) {
-   Profile storage profile = profiles[_walletAddress];
-    uint256 amount = Donation(0x7afe38e0a012EAEbAfA2d56c49830E137742144A).donations(_walletAddress);
-    return (
-        profile.username,
-        profile.bio,
-        profile.email,
-        profile.socialLinks,
-        profile.image,
-        profile.follows,
-        profile.posts,
-        profile.comments,
-        profile.nfts,
-        profile.hasDonated,
-        amount // set the return value to the user's donation amount
-    );
-}
-
-    function addNft(uint256 _tokenId) public {
-        IERC721 nft = IERC721(msg.sender);
-        require(nft.ownerOf(_tokenId) == msg.sender, "Only the owner of the NFT can add it to their profile");
-        Profile storage profile = profiles[msg.sender];
-        profile.nfts.push(_tokenId);
-        nftOwners[_tokenId] = msg.sender;
-        emit NftAdded(msg.sender, _tokenId);
+    function updateProfile(
+        string memory _name, 
+        string memory _bio, 
+        string memory _facebook, 
+        string memory _twitter, 
+        string memory _email,
+        string memory _website
+    ) public onlyOwner {
+        name = _name;
+        bio = _bio;
+        facebook = _facebook;
+        twitter = _twitter;
+        email = _email;
+        website = _website;
     }
 
-    function removeNft(uint256 _tokenId) public {
-        require(nftOwners[_tokenId] == msg.sender, "Only the owner of the NFT can remove it from their profile");
-        Profile storage profile = profiles[msg.sender];
-        uint256[] storage nfts = profile.nfts;
-        for (uint i = 0; i < nfts.length; i++) {
-            if (nfts[i] == _tokenId) {
-                nfts[i] = nfts[nfts.length - 1];
-                nfts.pop();
-                break;
-            }
-        }
-        delete nftOwners[_tokenId];
-        emit NftRemoved(msg.sender, _tokenId);
+    function updateEmail(string memory _email) public onlyOwner {
+        email = _email;
     }
 
-    function markDonated() public {
-        Profile storage profile = profiles[msg.sender];
-        profile.hasDonated = true;
+    function authorizeViewer(address viewer) public onlyOwner {
+        authorizedViewers[viewer] = true;
+    }
+
+    function revokeViewer(address viewer) public onlyOwner {
+        authorizedViewers[viewer] = false;
+    }
+
+    function getProfile() public view returns (
+        string memory, 
+        string memory, 
+        string memory, 
+        string memory, 
+        string memory,
+        string memory
+    ) {
+        require(authorizedViewers[msg.sender], "Unauthorized viewer");
+        return (
+            name, 
+            bio, 
+            facebook, 
+            twitter, 
+            email, 
+            website
+        );
+    }
+
+    function likeProfile() public {
+        require(!likedBy[msg.sender], "Already liked");
+        likedBy[msg.sender] = true;
+        reputationScores[owner] += 1;
+    }
+
+    function unlikeProfile() public {
+        require(likedBy[msg.sender], "Not liked");
+        likedBy[msg.sender] = false;
+        reputationScores[owner] -= 1;
+    }
+
+    function followProfile() public {
+        require(!followedBy[msg.sender], "Already following");
+        followedBy[msg.sender] = true;
+        reputationScores[owner] += 5;
+    }
+
+    function unfollowProfile() public {
+        require(followedBy[msg.sender], "Not following");
+        followedBy[msg.sender] = false;
+        reputationScores[owner] -= 5;
+    }
+
+    function deleteComment(address commenter) public onlyOwner {
+        require(bytes(comments[commenter]).length > 0, "Comment does not exist");
+        delete comments[commenter];
+        reputationScores[owner] -= 2;
+    }
+
+    function updateReputationScore(address user, uint256 score) public onlyOwner {
+        reputationScores[user] = score;
+    }
+
+    function getReputationScore() public view returns (uint256) {
+        return reputationScores[owner];
     }
 }

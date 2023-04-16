@@ -1,7 +1,6 @@
 import './App.css';
 import Navbar from './components/Navbar.js';
 import Marketplace from './components/Marketplace';
-import Profile from './components/Profile';
 import SellNFT from './components/SellNFT';
 import NFTPage from './components/NFTpage';
 import AboutPage from './components/AboutPage';
@@ -10,6 +9,7 @@ import FAQPage from './components/FAQPage';
 import DonatePage from './components/DonatePage';
 import CreateCampaign from './components/CreateCampaign';
 import AllFundraisers from './components/AllFundraisers';
+import UserProfiles from './components/UserProfiles';
 import ReactDOM from "react-dom/client";
 import {
   BrowserRouter,
@@ -29,7 +29,7 @@ function App() {
           <Route path="/fundraiser-stats" element={<AllFundraisers />} />
           <Route path="/market" element={<Marketplace />}/>
           <Route path="/nftPage" element={<NFTPage />}/>        
-          <Route path="/profile" element={<Profile />}/>
+          <Route path="/user-profile" element={<UserProfiles />}/>
           <Route path="/sellNFT" element={<SellNFT />}/>             
         </Routes>
     </div>

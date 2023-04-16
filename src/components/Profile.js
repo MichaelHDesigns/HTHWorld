@@ -1,7 +1,6 @@
 import Navbar from "./Navbar";
 import { useLocation, useParams } from 'react-router-dom';
 import MarketplaceJSON from "../Marketplace.json";
-import ProfilesJSON from "../abi/Profiles.json";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import NFTTile from "./NFTTile";

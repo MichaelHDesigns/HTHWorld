@@ -4,6 +4,7 @@ import FormData from 'form-data';
 const pinataApiKey = process.env.REACT_APP_PINATA_KEY;
 const pinataSecretApiKey = process.env.REACT_APP_PINATA_SECRET;
 
+
 export const uploadJSONToIPFS = async (JSONBody) => {
   const url = 'https://api.pinata.cloud/pinning/pinJSONToIPFS';
 
@@ -19,6 +20,23 @@ export const uploadJSONToIPFS = async (JSONBody) => {
         success: true,
         pinataURL: 'https://gateway.pinata.cloud/ipfs/' + response.data.IpfsHash,
       };
+    })
+    .catch(function (error) {
+      console.log(error);
+      return {
+        success: false,
+        message: error.message,
+      };
+    });
+};
+
+export async function getJSONFromIPFS(hash) {
+  const url = `https://gateway.pinata.cloud/ipfs/${hash}`;
+
+  return axios
+    .get(url)
+    .then(function (response) {
+      return { success: true, data: response.data };
     })
     .catch(function (error) {
       console.log(error);
@@ -88,7 +106,7 @@ export const uploadFileToIPFS = async (file) => {
 };
 
 export const getPinList = async () => {
-  const url = 'https://api.pinata.cloud/data/pinList?pageLimit=1000';
+  const url = 'https://api.pinata.cloud/data/pinList?pageLimit=1';
   const headers = {
     pinata_api_key: pinataApiKey,
     pinata_secret_api_key: pinataSecretApiKey,

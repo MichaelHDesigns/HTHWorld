@@ -31,6 +31,16 @@
     color:#debf12;
 }
 
+.cardProfile {
+  background-color: #5B5B5B;
+  box-shadow: 0 4px 8px 0 #000;
+  max-width: 50%;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  top: -200px;
+}
 
 .profileWrapper {
   display: flex;
@@ -45,12 +55,15 @@
   flex-direction: row-reverse;
   justify-content: flex-start;
   padding: 20px;
-  margin-right: 10px;
+  margin-right: 0px;
+  
 }
 
 .profileImage img {
   width: 100px;
   height: 100px;
+  box-shadow: 0 4px 8px 0 #000;
+  border-radius: 50%;
 }
 
 select, textarea {
@@ -65,6 +78,27 @@ select, textarea {
 
 .profileClass {
   align-self: flex-end;
+}
+
+/* styles for screens smaller than 768px */
+@media (max-width: 767px) {
+  .cardProfile {
+    max-width: 40%;
+  }
+
+  .profilePic {
+    max-width: 50%;
+  }
+
+  .profileWrapper {
+    flex-direction: column-reverse;
+    padding: 0;
+    margin: 0;
+  }
+
+  .profileClass {
+    align-self: flex-start;
+  }
 }
 
 form.bg-white {
@@ -613,6 +647,7 @@ form {
   display: flex;
   flex-direction: column;
   margin-bottom: 2rem;
+  align-items: center;
 }
 
 label {
