@@ -38,6 +38,26 @@ img, video {
     color:#debf12;
 }
 
+.mt-10 {
+    margin-top: 10.5rem;
+}
+
+.mt-11 {
+    margin-top: 2.75rem;
+}
+
+.cardNFTProfile {
+  background-color: #5B5B5B;
+  box-shadow: 0 4px 8px 0 #000;
+  max-width: 50%;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  position: relative;
+  top: 20px;
+  margin: 0 auto;
+}
+
 .cardProfile {
   background-color: #5B5B5B;
   box-shadow: 0 4px 8px 0 #000;
@@ -46,9 +66,23 @@ img, video {
   padding: 20px;
   border-radius: 10px;
   position: relative;
-  top: 5px;
+  top: 40px;
+  margin: 0 auto;
+  height: 210px;
+}
+
+.cardEditProfile {
+  background-color: #5B5B5B;
+  box-shadow: 0 4px 8px 0 #000;
+  max-width: 50%;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  top: 70px;
   margin: 0 auto;
 }
+
 
 .profileWrapper {
   display: flex;
@@ -698,7 +732,7 @@ input[type="text"] {
   box-shadow: 0 4px 8px 0 #000;
   border-radius: 3px;
   margin-bottom: 1rem;
-  width: 50%;
+  width: 100%;
 }
 
 /**** Create Fundraiser Styles ****/

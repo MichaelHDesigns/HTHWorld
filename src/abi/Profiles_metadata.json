@@ -9,7 +9,7 @@
 				"inputs": [
 					{
 						"internalType": "string",
-						"name": "_name",
+						"name": "_username",
 						"type": "string"
 					},
 					{
@@ -31,25 +31,9 @@
 						"internalType": "string",
 						"name": "_email",
 						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_website",
-						"type": "string"
 					}
 				],
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "viewer",
-						"type": "address"
-					}
-				],
-				"name": "authorizeViewer",
+				"name": "createProfile",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -58,120 +42,10 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "",
+						"name": "_user",
 						"type": "address"
 					}
 				],
-				"name": "authorizedViewers",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "bio",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "comments",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "commenter",
-						"type": "address"
-					}
-				],
-				"name": "deleteComment",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "email",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "facebook",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "followProfile",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "followedBy",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "getProfile",
 				"outputs": [
 					{
@@ -198,217 +72,6 @@
 						"internalType": "string",
 						"name": "",
 						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getReputationScore",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "likeProfile",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "likedBy",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "name",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "owner",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "reputationScores",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "viewer",
-						"type": "address"
-					}
-				],
-				"name": "revokeViewer",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "twitter",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "unfollowProfile",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "unlikeProfile",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "_email",
-						"type": "string"
-					}
-				],
-				"name": "updateEmail",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "_name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_bio",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_facebook",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_twitter",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_email",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_website",
-						"type": "string"
-					}
-				],
-				"name": "updateProfile",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "user",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "score",
-						"type": "uint256"
-					}
-				],
-				"name": "updateReputationScore",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "website",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -428,7 +91,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Profiles.sol": "Profile"
+			"Profiles.sol": "Profiles"
 		},
 		"evmVersion": "paris",
 		"libraries": {},
@@ -443,11 +106,11 @@
 	},
 	"sources": {
 		"Profiles.sol": {
-			"keccak256": "0xbd6bd9e3a34d8ff2678f6abf46598dd8673a7bae8b00e5e32fc2e1cb0b210c7c",
+			"keccak256": "0x1478cc69a511888d57a372e2365769cba5c6eae41bab29332d2621078c4487a1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://09a01b1b2aef33bed5063fba52d3daf748f35c102a465bbde858450e5ace1aa5",
-				"dweb:/ipfs/QmWX9W6aXEsiJEvf8Xf5eDLD6ZFGAD8cViQZTkTwspX99r"
+				"bzz-raw://0b79331d18be6eb888501115930c49fb66b6655b3294c5d38a71aaf8d6ece210",
+				"dweb:/ipfs/QmabZRbyzhvJes32Tu5WFR6uZbgc5D8SLKQPB9F4L7Zzs2"
 			]
 		}
 	},

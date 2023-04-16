@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Web3 from 'web3';
+import { ethers } from 'ethers';
 import Profiles from '../abi/Profiles.json';
 import Navbar from "./Navbar";
 import { useLocation, useParams } from 'react-router-dom';
@@ -9,22 +10,28 @@ import NFTTile from "./NFTTile";
 import { useWeb3React } from "@web3-react/core";
 import { uploadJSONToIPFS } from "../pinata";
 
+const provider = new ethers.providers.Web3Provider(window.ethereum);
+const contract = new ethers.Contract(
+  "0x3455A8D1B9fD1a557Bf2b19c780e6477c02510dF",
+  Profiles.abi,
+  provider.getSigner()
+);
+
 const UserProfiles = () => {
-  const [name, setName] = useState('');
-  const [bio, setBio] = useState('');
-  const [facebook, setFacebook] = useState('');
-  const [twitter, setTwitter] = useState('');
-  const [email, setEmail] = useState('');
-  const [website, setWebsite] = useState('');
-  const [newName, setNewName] = useState('');
-  const [newBio, setNewBio] = useState('');
-  const [newFacebook, setNewFacebook] = useState('');
-  const [newTwitter, setNewTwitter] = useState('');
-  const [newEmail, setNewEmail] = useState('');
-  const [newWebsite, setNewWebsite] = useState('');
+   const [username, setUsername] = useState("");
+  const [bio, setBio] = useState("");
+  const [facebook, setFacebook] = useState("");
+  const [twitter, setTwitter] = useState("");
+  const [email, setEmail] = useState("");
+  const [provider, setProvider] = useState("");
+  const [profile, setProfile] = useState({
+    username: "",
+    bio: "",
+    facebook: "",
+    twitter: "",
+    email: "",
+  });
   const [profileContract, setProfileContract] = useState(null);
-  const [account, setAccount] = useState('');
-  const [showForm, setShowForm] = useState(false);
   const [data, updateData] = useState([]);
     const [dataFetched, updateFetched] = useState(false);
     const [address, updateAddress] = useState("0x");
@@ -86,223 +93,87 @@ const handleNftChange = (e) => {
   };
 
 
-useEffect(() => {
-const init = async () => {
-// Connect to Web3 provider via Metamask extension
-if (window.ethereum) {
-try {
-await window.ethereum.request({ method: 'eth_requestAccounts' });
-const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-const web3 = new Web3(window.ethereum);
-setAccount(accounts[0]);
+const createProfile = async () => {
+  try {
+    // Prompt the user to connect their Metamask account
+    await window.ethereum.request({ method: 'eth_requestAccounts' });
+    
+    // Create an instance of ethers.providers.Web3Provider using the current provider in Metamask
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
 
-      // Load contract
-      const abi = Profiles.abi;
-      const address = '0xeaB5a9390a173eA97510fE91057Ded09F3d2200F'; // Replace with your contract address
-      const contract = new web3.eth.Contract(abi, address);
-      setProfileContract(contract);
+    // Get the signer using the provider
+    const signer = provider.getSigner();
 
-      // Load data from contract
-      const profileData = await contract.methods.getProfile().call({ from: accounts[0] });
-      setName(profileData[0]);
-      setBio(profileData[1]);
-      setFacebook(profileData[2]);
-      setTwitter(profileData[3]);
-      setEmail(profileData[4]);
-      setWebsite(profileData[5]);
-    } catch (error) {
-      console.log(error);
-    }
-  } else {
-    console.log('Please install MetaMask to use this dApp');
+    // Create an instance of the contract using the contract address, ABI, and signer
+    const contract = new ethers.Contract(
+      "0x3455A8D1B9fD1a557Bf2b19c780e6477c02510dF",
+      Profiles.abi,
+      signer
+    );
+
+    // Call the createProfile function on the contract using the provided parameters
+    await contract.createProfile(username, bio, facebook, twitter, email);
+    
+    // Display a success message
+    alert("Profile created successfully!");
+  } catch (err) {
+    console.error(err);
   }
 };
-init();
-}, []);
-
-const handleInputChange = (event) => {
-const { name, value } = event.target;
-switch(name) {
-case 'name':
-setName(value);
-break;
-case 'bio':
-setBio(value);
-break;
-case 'facebook':
-setFacebook(value);
-break;
-case 'twitter':
-setTwitter(value);
-break;
-case 'email':
-setEmail(value);
-break;
-case 'website':
-setWebsite(value);
-break;
-default:
-break;
-}
-};
-
-  const handleEditClick = () => {
-    setShowForm(true);
-  };
-
-  const handleCancelClick = () => {
-    setShowForm(false);
-  };
-
-const handleSubmit = async (event) => {
-event.preventDefault();
-try {
-const web3 = new Web3(window.ethereum);
-const accounts = await web3.eth.getAccounts();
-const contract = new web3.eth.Contract(Profiles.abi, '0xeaB5a9390a173eA97510fE91057Ded09F3d2200F');
-await contract.methods.updateProfile(name, bio, facebook, twitter, email, website).send({ from: accounts[0] });
-} catch (error) {
-console.log(error);
-}
-};
 
 
- 
-
-return (
-<div>
-            <Navbar></Navbar>
-<br/>
-<div>
-  <h3>Hello!</h3>
-{address}
-</div>
-
- <div className="card">
-      <div className="flex text-center flex-col mt-11 md:text-1xl text-white">
-        <div className="mb-5">
-          <h2 className="font-bold">Profile Picture</h2>
-        </div>
-        {data.length > 0 && (
-          <div className="profilePic">
-            <img src={selectedNft} alt="User's NFT" />
-            <div className="selectNFT">
-            <select className="selectNFT" onChange={handleNftChange}>
-              {data.map((nft, index) => (
-                <option key={index} value={nft.image}>
-                  {nft.name}
-                </option>
-              ))}
-            </select>
-           </div>
-          </div>
-        )}
-      </div>
-    </div>
+  async function getProfile() {
+    const address = prompt("Enter user address:");
+    const profileData = await contract.getProfile(address);
+    setProfile({
+      username: profileData[0],
+      bio: profileData[1],
+      facebook: profileData[2],
+      twitter: profileData[3],
+      email: profileData[4],
+    });
+  }
 
 
-  <div className="cardProfile">
-    <h1>{name}</h1>
-    <p>{bio}</p>
-    <p>{facebook}</p>
-    <p>{twitter}</p>
-    <p>{email}</p>
-    <p>{website}</p>
-     <div>
-      <button onClick={handleEditClick}>Edit Profile</button>
-      {showForm && (
-        <div className="modal">
-          <div className="card">
-            <form onSubmit={handleSubmit}>
-              <label htmlFor="name">Name</label>
-              <input
-                type="text"
-                id="name"
-                value={newName}
-                onChange={(e) => setNewName(e.target.value)}
-              />
-              <br />
-              <label htmlFor="bio">Bio</label>
-              <input
-                type="text"
-                id="bio"
-                value={newBio}
-                onChange={(e) => setNewBio(e.target.value)}
-              />
-              <br />
-              <label htmlFor="facebook">Facebook</label>
-              <input
-                type="text"
-                id="facebook"
-                value={newFacebook}
-                onChange={(e) => setNewFacebook(e.target.value)}
-              />
-              <br />
-              <label htmlFor="twitter">Twitter</label>
-              <input
-                type="text"
-                id="twitter"
-                value={newTwitter}
-                onChange={(e) => setNewTwitter(e.target.value)}
-              />
-              <br />
-              <label htmlFor="email">Email</label>
-              <input
-                type="text"
-                id="email"
-                value={newEmail}
-                onChange={(e) => setNewEmail(e.target.value)}
-              />
-              <br />
-              <label htmlFor="website">Website</label>
-              <input
-                type="text"
-                id="website"
-                value={newWebsite}
-                onChange={(e) => setNewWebsite(e.target.value)}
-              />
-              <br />
-              <button type="submit">Update Profile</button>
-              <br />
-              <button type="button" onClick={handleCancelClick}>
-                Cancel
-              </button>
-            </form>
-          </div>
+
+  return (
+    <div>
+      <h1>Create a Profile</h1>
+      <label>
+        Username:
+        <input type="text" onChange={(e) => setUsername(e.target.value)} />
+      </label>
+      <label>
+        Bio:
+        <input type="text" onChange={(e) => setBio(e.target.value)} />
+      </label>
+      <label>
+        Facebook:
+        <input type="text" onChange={(e) => setFacebook(e.target.value)} />
+      </label>
+      <label>
+        Twitter:
+        <input type="text" onChange={(e) => setTwitter(e.target.value)} />
+      </label>
+      <label>
+        Email:
+        <input type="text" onChange={(e) => setEmail(e.target.value)} />
+      </label>
+      <button onClick={createProfile}>Create Profile</button>
+
+      <h1>View Profile</h1>
+      <button onClick={getProfile}>Get Profile</button>
+      {profile.username && (
+        <div>
+          <p>Username: {profile.username}</p>
+          <p>Bio: {profile.bio}</p>
+          <p>Facebook: {profile.facebook}</p>
+          <p>Twitter: {profile.twitter}</p>
+          <p>Email: {profile.email}</p>
         </div>
       )}
     </div>
-  </div>
-
-<div className="profileClass" style={{"minHeight":"100vh"}}>
-            
-        <div className="flex flex-row text-center justify-center mt-10 md:text-1xl text-white">
-           <div>
-        <h2 className="font-bold">No. of NFTs</h2>
-             {data.length}
-           </div>
-          <div className="ml-20">
-        <h2 className="font-bold">Total Value</h2>
-            {totalPrice} ETH
-          </div>
-        </div>
-    <div className="flex flex-col text-center items-center mt-11 text-white">
-        <h2 className="font-bold">Your NFTs</h2>
-     <div className="flex justify-center flex-wrap max-w-screen-xl">
-           {data.map((value, index) => {
-           return <NFTTile data={value} key={index}></NFTTile>;
-            })}
-     </div>
-      <div className="mt-10 text-xl">
-          {data.length == 0 ? "Oops, No NFT data to display (Are you logged in?)":""}
-      </div>
-    </div>
-  </div>
-
-</div>
-
-
-    )
-};
+  );
+}
 
 export default UserProfiles;

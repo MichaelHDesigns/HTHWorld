@@ -2,41 +2,50 @@
 
 pragma solidity ^0.8.0;
 
-contract Profile {
-    string public name;
-    string public bio;
-    string public facebook;
-    string public twitter;
-    string public email;
-    string public website;
-    address public owner;
+contract ProfileContract {
+    struct Profile {
+        string name;
+        string bio;
+        string facebook;
+        string twitter;
+        string email;
+        string website;
+        address owner;
+    }
+
+    mapping(address => Profile) public profiles;
     mapping(address => bool) public authorizedViewers;
     mapping(address => bool) public likedBy;
     mapping(address => bool) public followedBy;
     mapping(address => string) public comments;
     mapping(address => uint256) public reputationScores;
 
-    constructor(
+    modifier onlyOwner {
+        require(msg.sender == profiles[msg.sender].owner, "Only profile owner can call this function");
+        _;
+    }
+
+    function createProfile(
         string memory _name, 
         string memory _bio, 
         string memory _facebook, 
         string memory _twitter, 
         string memory _email,
         string memory _website
-    ) {
-        name = _name;
-        bio = _bio;
-        facebook = _facebook;
-        twitter = _twitter;
-        email = _email;
-        website = _website;
-        owner = msg.sender;
-        authorizedViewers[owner] = true;
-    }
+    ) public {
+        require(bytes(profiles[msg.sender].name).length == 0, "Profile already exists");
 
-    modifier onlyOwner {
-        require(msg.sender == owner, "Only the owner can call this function.");
-        _;
+        profiles[msg.sender] = Profile({
+            name: _name,
+            bio: _bio,
+            facebook: _facebook,
+            twitter: _twitter,
+            email: _email,
+            website: _website,
+            owner: msg.sender
+        });
+
+        authorizedViewers[msg.sender] = true;
     }
 
     function updateProfile(
@@ -47,16 +56,12 @@ contract Profile {
         string memory _email,
         string memory _website
     ) public onlyOwner {
-        name = _name;
-        bio = _bio;
-        facebook = _facebook;
-        twitter = _twitter;
-        email = _email;
-        website = _website;
-    }
-
-    function updateEmail(string memory _email) public onlyOwner {
-        email = _email;
+        profiles[msg.sender].name = _name;
+        profiles[msg.sender].bio = _bio;
+        profiles[msg.sender].facebook = _facebook;
+        profiles[msg.sender].twitter = _twitter;
+        profiles[msg.sender].email = _email;
+        profiles[msg.sender].website = _website;
     }
 
     function authorizeViewer(address viewer) public onlyOwner {
@@ -67,7 +72,7 @@ contract Profile {
         authorizedViewers[viewer] = false;
     }
 
-    function getProfile() public view returns (
+    function getProfile(address profileOwner) public view returns (
         string memory, 
         string memory, 
         string memory, 
@@ -77,50 +82,44 @@ contract Profile {
     ) {
         require(authorizedViewers[msg.sender], "Unauthorized viewer");
         return (
-            name, 
-            bio, 
-            facebook, 
-            twitter, 
-            email, 
-            website
+            profiles[profileOwner].name, 
+            profiles[profileOwner].bio, 
+            profiles[profileOwner].facebook, 
+            profiles[profileOwner].twitter, 
+            profiles[profileOwner].email, 
+            profiles[profileOwner].website
         );
     }
 
     function likeProfile() public {
-        require(!likedBy[msg.sender], "Already liked");
-        likedBy[msg.sender] = true;
-        reputationScores[owner] += 1;
-    }
+    require(!likedBy[msg.sender], "Already liked");
+    likedBy[msg.sender] = true;
+    reputationScores[profiles[msg.sender].owner] += 1;
+}
 
-    function unlikeProfile() public {
-        require(likedBy[msg.sender], "Not liked");
-        likedBy[msg.sender] = false;
-        reputationScores[owner] -= 1;
-    }
+function unlikeProfile() public {
+    require(likedBy[msg.sender], "Not liked");
+    likedBy[msg.sender] = false;
+    reputationScores[profiles[msg.sender].owner] -= 1;
+}
 
-    function followProfile() public {
-        require(!followedBy[msg.sender], "Already following");
-        followedBy[msg.sender] = true;
-        reputationScores[owner] += 5;
-    }
+function followProfile() public {
+    require(!followedBy[msg.sender], "Already following");
+    followedBy[msg.sender] = true;
+    reputationScores[profiles[msg.sender].owner] += 5;
+}
 
-    function unfollowProfile() public {
-        require(followedBy[msg.sender], "Not following");
-        followedBy[msg.sender] = false;
-        reputationScores[owner] -= 5;
-    }
+function unfollowProfile() public {
+    require(followedBy[msg.sender], "Not following");
+    followedBy[msg.sender] = false;
+    reputationScores[profiles[msg.sender].owner] -= 5;
+}
 
-    function deleteComment(address commenter) public onlyOwner {
-        require(bytes(comments[commenter]).length > 0, "Comment does not exist");
-        delete comments[commenter];
-        reputationScores[owner] -= 2;
-    }
+function updateReputationScore(address user, uint256 score) public onlyOwner {
+    reputationScores[user] = score;
+}
 
-    function updateReputationScore(address user, uint256 score) public onlyOwner {
-        reputationScores[user] = score;
-    }
-
-    function getReputationScore() public view returns (uint256) {
-        return reputationScores[owner];
-    }
+function getReputationScore() public view returns (uint256) {
+    return reputationScores[profiles[msg.sender].owner];
+}
 }
