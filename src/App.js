@@ -11,6 +11,7 @@ import CreateCampaign from './components/CreateCampaign';
 import AllFundraisers from './components/AllFundraisers';
 import UserProfiles from './components/UserProfiles';
 import AllUsers from './components/AllUsers';
+import Profile from './components/Profile';
 import ReactDOM from "react-dom/client";
 import {
   BrowserRouter,
@@ -32,6 +33,7 @@ function App() {
           <Route path="/nftPage" element={<NFTPage />}/>        
           <Route path="/user-profile" element={<UserProfiles />}/>
           <Route path="/all-users" element={<AllUsers />}/>
+          <Route path="/profile" element={<Profile />}/>
           <Route path="/sellNFT" element={<SellNFT />}/>             
         </Routes>
     </div>

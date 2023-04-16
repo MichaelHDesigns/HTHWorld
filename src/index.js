@@ -19,6 +19,7 @@ import CreateCampaign from './components/CreateCampaign';
 import AllFundraisers from './components/AllFundraisers';
 import UserProfiles from './components/UserProfiles';
 import AllUsers from './components/AllUsers';
+import Profile from './components/Profile';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -36,6 +37,7 @@ root.render(
           <Route path="/sellNFT" element={<SellNFT />}/> 
           <Route path="/nftPage/:tokenId" element={<NFTPage />}/>        
           <Route path="/user-profile" element={<UserProfiles />}/>
+          <Route path="/profile" element={<Profile />}/>
           <Route path="/all-users" element={<AllUsers />}/>
       </Routes>
     </BrowserRouter>

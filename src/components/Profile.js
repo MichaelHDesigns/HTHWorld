@@ -7,16 +7,38 @@ import NFTTile from "./NFTTile";
 import Web3 from 'web3';
 import { useWeb3React } from "@web3-react/core";
 import { uploadJSONToIPFS } from "../pinata";
+import Profiles from '../abi/Profiles.json';
+import { ethers } from 'ethers';
 
 
 
-export default function Profile ({ profile }) {
+export default function Profile () {
+    const { library, account } = useWeb3React(); 
     const [data, updateData] = useState([]);
+    const [profile, setProfile] = useState({});
     const [dataFetched, updateFetched] = useState(false);
     const [address, updateAddress] = useState("0x");
     const [totalPrice, updateTotalPrice] = useState("0");
     const [selectedNft, setSelectedNft] = useState(data.length > 0 ? data[0].image : null);
 
+    
+ async function getProfile(address) {
+    const web3 = new Web3(library.provider);
+    const contract = new web3.eth.Contract(
+      Profiles.abi,
+      "0x3455A8D1B9fD1a557Bf2b19c780e6477c02510dF"
+    );
+    const profile = await contract.methods.getProfile(address).call();
+    return profile;
+  }
+
+  useEffect(() => {
+    if (account) {
+      getProfile(account).then((profile) => {
+        setProfile(profile);
+      });
+    }
+  }, [account]);
 
     async function getNFTData(tokenId) {
         const ethers = require("ethers");
@@ -104,7 +126,12 @@ const handleNftChange = (e) => {
         )}
       </div>
     </div>
-
+<div className="cardProfile">
+      <h1>{profile.name}</h1>
+      <p>{profile.bio}</p>
+      <p>{profile.website}</p>
+      <p>{profile.socialMedia}</p>
+    </div>
 
 
 
@@ -134,3 +161,4 @@ const handleNftChange = (e) => {
         </div>
     )
 };
+
