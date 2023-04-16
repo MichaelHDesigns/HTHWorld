@@ -172,20 +172,22 @@ console.log(error);
 return (
 <div>
             <Navbar></Navbar>
-<br />
-<br />
+<br/>
+<div>
+  <h3>Hello!</h3>
+{address}
+</div>
 
- <div className="profileImage">
+ <div className="card">
       <div className="flex text-center flex-col mt-11 md:text-1xl text-white">
         <div className="mb-5">
-          <h2 className="font-bold">Hello!</h2>
-          {address}
+          <h2 className="font-bold">Profile Picture</h2>
         </div>
         {data.length > 0 && (
           <div className="profilePic">
             <img src={selectedNft} alt="User's NFT" />
-            <div className="select">
-            <select onChange={handleNftChange}>
+            <div className="selectNFT">
+            <select className="selectNFT" onChange={handleNftChange}>
               {data.map((nft, index) => (
                 <option key={index} value={nft.image}>
                   {nft.name}

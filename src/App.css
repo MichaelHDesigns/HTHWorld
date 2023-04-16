@@ -13,6 +13,13 @@
   }
 }
 
+img, video {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 4px 8px 0 #000;
+    border-radius: 50%;
+}
+
 .pb-10 {
     padding-bottom: 3.4rem;
 }
@@ -39,7 +46,8 @@
   padding: 20px;
   border-radius: 10px;
   position: relative;
-  top: -200px;
+  top: 5px;
+  margin: 0 auto;
 }
 
 .profileWrapper {
@@ -69,7 +77,17 @@
 select, textarea {
     font-family: inherit;
     font-size: 100%;
-    background: #5B5B5B;
+    background: #fff;
+    line-height: inherit;
+    color: #34bcaa;
+    margin: 10px;
+    padding: 0;
+}
+
+.selectNFT {
+    font-family: inherit;
+    font-size: 100%;
+    background: #5b5b5b;
     line-height: inherit;
     color: #34bcaa;
     margin: 10px;
@@ -83,12 +101,27 @@ select, textarea {
 /* styles for screens smaller than 768px */
 @media (max-width: 767px) {
   .cardProfile {
-    max-width: 40%;
+    max-width: 60%;
+    margin: 0 auto;
   }
 
-  .profilePic {
-    max-width: 50%;
+.profilePic {
+  max-width: 30%;
   }
+
+img, video {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 4px 8px 0 #000;
+    border-radius: 50%;
+}
+
+.profileImage img {
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 4px 8px 0 #000;
+  border-radius: 50%;
+}
 
   .profileWrapper {
     flex-direction: column-reverse;
