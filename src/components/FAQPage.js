@@ -30,8 +30,10 @@ function FaqPage() {
   return (
     <>
       <Navbar />
+<br />
+      <h1>Frequently Asked Questions</h1>
       <div className="container my-5">
-        <h1>Frequently Asked Questions</h1>
+        
         <div className="accordion" id="faqAccordion">
           {faqItems.map((item, index) => (
             <div className="accordion-item" key={index}>

@@ -43,7 +43,36 @@ img, video {
 }
 
 .mt-11 {
-    margin-top: 2.75rem;
+    margin-top: -1.75rem;
+}
+
+@media screen and (max-width: 768px) {
+    .mt-11 {
+        margin-top: -1rem;
+    }
+}
+
+.flex {
+  display: flex;
+}
+.text-center {
+  text-align: center;
+}
+.flex-col {
+  flex-direction: column;
+}
+.mt-11 {
+  margin-top: -1.75rem;
+}
+.text-white {
+  color: white;
+}
+
+/* Mobile styles */
+@media (max-width: 767px) {
+  .md\:text-1xl {
+    font-size: 11px; /* or any other font size you want for mobile */
+  }
 }
 
 .cardNFTProfile {
@@ -61,12 +90,12 @@ img, video {
 .cardProfile {
   background-color: #5B5B5B;
   box-shadow: 0 4px 8px 0 #000;
-  max-width: 50%;
+  max-width: 37%;
   margin: 20px;
   padding: 20px;
   border-radius: 10px;
   position: relative;
-  top: 40px;
+  top: 105px;
   margin: 0 auto;
   height: 210px;
 }
@@ -135,9 +164,17 @@ select, textarea {
 /* styles for screens smaller than 768px */
 @media (max-width: 767px) {
   .cardProfile {
-    max-width: 60%;
-    margin: 0 auto;
-  }
+  background-color: #5B5B5B;
+  box-shadow: 0 4px 8px 0 #000;
+  max-width: 37%;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  top: 40px;
+  margin: 0 auto;
+  height: 210px;
+}
 
 .profilePic {
   max-width: 30%;

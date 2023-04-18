@@ -7,6 +7,7 @@ function AboutPage() {
     <div>
       <Navbar></Navbar>
 <div>
+<br />
 <h1>About HTH World</h1>
 </div>
 

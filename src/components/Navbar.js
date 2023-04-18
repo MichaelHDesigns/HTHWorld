@@ -112,16 +112,8 @@ function Navbar() {
               </li>
             </ul>
           </li>
-          <li className="dropdown">
-            <a href="#">Profiles</a>
-            <ul>
-              <li>
-                <Link to="/user-profile">Profile</Link>
-              </li>
-              <li>
-                <Link to="/all-users">Users</Link>
-              </li>
-            </ul>
+          <li>
+            <Link to="/profile">Profile</Link>
           </li>
           <li className="dropdown">
             <a href="#">Info</a>

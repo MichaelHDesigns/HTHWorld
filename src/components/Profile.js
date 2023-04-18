@@ -2,43 +2,16 @@ import Navbar from "./Navbar";
 import { useLocation, useParams } from 'react-router-dom';
 import MarketplaceJSON from "../Marketplace.json";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import NFTTile from "./NFTTile";
-import Web3 from 'web3';
-import { useWeb3React } from "@web3-react/core";
-import { uploadJSONToIPFS } from "../pinata";
-import Profiles from '../abi/Profiles.json';
-import { ethers } from 'ethers';
-
-
 
 export default function Profile () {
-    const { library, account } = useWeb3React(); 
     const [data, updateData] = useState([]);
-    const [profile, setProfile] = useState({});
     const [dataFetched, updateFetched] = useState(false);
+    const [profile, setProfile] = useState({});
     const [address, updateAddress] = useState("0x");
     const [totalPrice, updateTotalPrice] = useState("0");
     const [selectedNft, setSelectedNft] = useState(data.length > 0 ? data[0].image : null);
-
-    
- async function getProfile(address) {
-    const web3 = new Web3(library.provider);
-    const contract = new web3.eth.Contract(
-      Profiles.abi,
-      "0x3455A8D1B9fD1a557Bf2b19c780e6477c02510dF"
-    );
-    const profile = await contract.methods.getProfile(address).call();
-    return profile;
-  }
-
-  useEffect(() => {
-    if (account) {
-      getProfile(account).then((profile) => {
-        setProfile(profile);
-      });
-    }
-  }, [account]);
 
     async function getNFTData(tokenId) {
         const ethers = require("ethers");
@@ -82,7 +55,6 @@ export default function Profile () {
         updateFetched(true);
         updateAddress(addr);
         updateTotalPrice(sumPrice.toPrecision(3));
-        setSelectedNft(items.length > 0 ? items[0].image : null);
     }
 
     const params = useParams();
@@ -94,8 +66,6 @@ const handleNftChange = (e) => {
     setSelectedNft(e.target.value);
   };
 
-
-
     return (
 <div>
         <div className="profileClass" style={{"minHeight":"100vh"}}>
@@ -103,7 +73,7 @@ const handleNftChange = (e) => {
 
       
 
-
+<div className="cardProfile">
     <div className="profileImage">
       <div className="flex text-center flex-col mt-11 md:text-1xl text-white">
         <div className="mb-5">
@@ -126,12 +96,8 @@ const handleNftChange = (e) => {
         )}
       </div>
     </div>
-<div className="cardProfile">
-      <h1>{profile.name}</h1>
-      <p>{profile.bio}</p>
-      <p>{profile.website}</p>
-      <p>{profile.socialMedia}</p>
-    </div>
+ </div>
+
 
 
 
@@ -161,4 +127,3 @@ const handleNftChange = (e) => {
         </div>
     )
 };
-
