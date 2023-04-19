@@ -13,6 +13,7 @@ contract Jobs {
         uint256 salary;
         bool isOpen;
         address[] applicants;
+        address acceptedApplicant; // new field to track accepted applicant
     }
 
     struct Applicant {
@@ -28,6 +29,7 @@ contract Jobs {
     event JobAdded(address indexed employer, uint256 indexed index);
     event JobApplied(address indexed applicant, uint256 indexed index);
     event JobAccepted(address indexed employer, address indexed applicant, uint256 indexed index);
+    event JobRejected(address indexed employer, address indexed applicant, uint256 indexed index);
 
     function addJob(
         string memory _title,
@@ -44,7 +46,8 @@ contract Jobs {
             jobType: _jobType,
             salary: _salary,
             isOpen: true,
-            applicants: new address[](0)
+            applicants: new address[](0),
+            acceptedApplicant: address(0) // initialize to null address
         });
 
         employerJobs[msg.sender].push(job);
@@ -64,6 +67,7 @@ contract Jobs {
 
         for (uint256 i = 0; i < job.applicants.length; i++) {
             if (job.applicants[i] == _applicant) {
+                job.acceptedApplicant = _applicant; // set the accepted applicant
                 job.applicants[i] = job.applicants[job.applicants.length - 1];
                 job.applicants.pop();
                 break;
@@ -98,4 +102,20 @@ contract Jobs {
     function getApplicantProfile() public view returns (Applicant memory) {
         return applicants[msg.sender];
     }
+
+    function rejectApplicant(address _applicant, address _employer, uint256 _index) public {
+    Job storage job = employerJobs[_employer][_index];
+
+    for (uint256 i = 0; i < job.applicants.length; i++) {
+        if (job.applicants[i] == _applicant) {
+            job.applicants[i] = job.applicants[job.applicants.length - 1];
+            job.applicants.pop();
+            break;
+        }
+    }
+
+    emit JobRejected(_employer, _applicant, _index);
+    
+    }
+    
 }
