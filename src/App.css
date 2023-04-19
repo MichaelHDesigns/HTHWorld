@@ -52,6 +52,16 @@ img, video {
     }
 }
 
+.mt-66 {
+    margin-top: 4.25rem;
+}
+
+@media screen and (max-width: 768px) {
+    .mt-66 {
+        margin-top: 4rem;
+    }
+}
+
 .flex {
   display: flex;
 }

@@ -128,7 +128,7 @@ const handleNftChange = (e) => {
                         {totalPrice} HTHW
                     </div>
             </div>
-            <div className="flex flex-col text-center items-center mt-11 text-white">
+            <div className="flex flex-col text-center items-center mt-66 text-white">
                 <h2 className="font-bold">Your NFTs</h2>
                 <div className="flex justify-center flex-wrap max-w-screen-xl">
                     {data.map((value, index) => {
