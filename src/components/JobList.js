@@ -72,7 +72,7 @@ const JobsList = () => {
             <h2>{job.title}</h2>
             <p>{job.description}</p>
             <p>Location: {job.location}</p>
-            <p>Salary: {job.salary} ETH</p>
+            <p>Salary: {job.salary} HTHW</p>
             <button onClick={() => setSelectedJob({ employer: job.employer, index: index })}>Apply to Job</button>
            <br />
           </li>

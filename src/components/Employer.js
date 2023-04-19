@@ -157,7 +157,7 @@ const rejectApplicant = async (applicant) => {
     <br/>
 
     <br/>
-    Welcome to the HTHW Testnet Application. Not all functions are working! This is only the begining! Please leave all
+    Welcome to the HTHW Testnet Application. Not all functions are working! This displays incorrect amount of ETH, Displays in gwei(wei)! This is only the begining! Please leave all
     <br/>
     of your comments, suggestions, ideas & feedback
     <br/>
@@ -205,7 +205,7 @@ const rejectApplicant = async (applicant) => {
 </label>
       <br />
       <label>
-        Job Salary (in ETH):
+        Job Salary (in HTHW):
         <input
           type="number"
           value={jobSalary}
