@@ -16,6 +16,24 @@ function HomePage() {
 <div className="container">
   <div className="cover-text align-middle">
     <br/>
+
+    <br/>
+    Welcome to the HTHW Testnet Application. Not all functions are working! This is only the begining! Please leave all
+    <br/>
+    of your comments, suggestions, ideas & feedback
+    <br/>
+    of
+    <strong> HTHW in the Official HTHW Discord</strong>
+    <br/>
+    <br/>
+    <a href="https://discord.gg/help-the-homeless-coin-459597014246883358" target="_blank" rel="noopener noreferrer" className="button">HTHW Discord</a>
+  </div>
+  <br/>
+</div>
+
+<div className="container">
+  <div className="cover-text align-middle">
+    <br/>
      <div className="center">
   <img src="https://hth.world/wp-content/themes/HTHworldwide/images/hthlogo_md.png" alt="HTH Logo"/>
      </div>

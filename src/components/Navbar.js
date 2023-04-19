@@ -102,6 +102,17 @@ function Navbar() {
             </ul>
           </li>
           <li className="dropdown">
+            <a href="#">Jobs</a>
+            <ul>
+              <li>
+                <Link to="/joblist">Job Listings</Link>
+              </li>
+              <li>
+                <Link to="/employer">Employers</Link>
+              </li>
+            </ul>
+          </li>
+          <li className="dropdown">
             <a href="#">NFT</a>
             <ul>
               <li>

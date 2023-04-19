@@ -49,6 +49,24 @@ return (
     <div>
         <Navbar></Navbar>
 <br/>
+<div className="container">
+  <div className="cover-text align-middle">
+    <br/>
+
+    <br/>
+    Welcome to the HTHW Testnet Application. Please allow time for the API to connect & download NFTs! This is only the begining! Please leave all
+    <br/>
+    of your comments, suggestions, ideas & feedback
+    <br/>
+    of
+    <strong> HTHW in the Official HTHW Discord</strong>
+    <br/>
+    <br/>
+    <a href="https://discord.gg/help-the-homeless-coin-459597014246883358" target="_blank" rel="noopener noreferrer" className="button">HTHW Discord</a>
+  </div>
+  <br/>
+</div>
+
 <div>
   <h1>Welcome to the HTHW Marketplace</h1>
 </div>

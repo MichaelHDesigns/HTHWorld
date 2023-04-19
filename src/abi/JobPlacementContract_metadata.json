@@ -1,0 +1,197 @@
+{
+	"compiler": {
+		"version": "0.8.19+commit.7dd6d404"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "jobTitle",
+						"type": "string"
+					},
+					{
+						"internalType": "string[]",
+						"name": "requiredSkills",
+						"type": "string[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "salary",
+						"type": "uint256"
+					}
+				],
+				"name": "addJobOpening",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "applicants",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "age",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "pastExperience",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAvailableJobs",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "jobTitle",
+								"type": "string"
+							},
+							{
+								"internalType": "string[]",
+								"name": "requiredSkills",
+								"type": "string[]"
+							},
+							{
+								"internalType": "uint256",
+								"name": "salary",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "isFilled",
+								"type": "bool"
+							}
+						],
+						"internalType": "struct JobPlacementContract.JobOpening[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "jobOpenings",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "jobTitle",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "salary",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isFilled",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "matchApplicantWithJob",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "age",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string[]",
+						"name": "skills",
+						"type": "string[]"
+					},
+					{
+						"internalType": "string",
+						"name": "pastExperience",
+						"type": "string"
+					}
+				],
+				"name": "registerAsApplicant",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Jobs.sol": "JobPlacementContract"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Jobs.sol": {
+			"keccak256": "0xbfe530ea22db3e8d11a7595bc033a79ab2953744980f95473c6b13b492efa876",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5fc6ac48e8cfc98841a2c416f67d05d82a6e9054121fa403cf44741f1230e17e",
+				"dweb:/ipfs/QmaiYtAYvPUxHpXL2LqiXRjNHDd8M8fyhwH5oozPRrxEFz"
+			]
+		}
+	},
+	"version": 1
+}

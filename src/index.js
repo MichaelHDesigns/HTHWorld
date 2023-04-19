@@ -18,7 +18,9 @@ import DonatePage from './components/DonatePage';
 import CreateCampaign from './components/CreateCampaign';
 import AllFundraisers from './components/AllFundraisers';
 import Profile from './components/Profile';
-
+import Applicant from './components/Applicant';
+import Employer from './components/Employer';
+import JobList from './components/JobList';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -35,6 +37,9 @@ root.render(
           <Route path="/sellNFT" element={<SellNFT />}/> 
           <Route path="/nftPage/:tokenId" element={<NFTPage />}/>        
           <Route path="/profile" element={<Profile />}/>
+          <Route path="/apply" element={<Applicant />}/>
+          <Route path="/employer" element={<Employer />}/>
+          <Route path="/joblist" element={<JobList />}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

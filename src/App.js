@@ -10,6 +10,9 @@ import DonatePage from './components/DonatePage';
 import CreateCampaign from './components/CreateCampaign';
 import AllFundraisers from './components/AllFundraisers';
 import Profile from './components/Profile';
+import Applicant from './components/Applicant';
+import Employer from './components/Employer';
+import JobList from './components/JobList';
 import ReactDOM from "react-dom/client";
 import {
   BrowserRouter,
@@ -30,6 +33,9 @@ function App() {
           <Route path="/market" element={<Marketplace />}/>
           <Route path="/nftPage" element={<NFTPage />}/>        
           <Route path="/profile" element={<Profile />}/>
+          <Route path="/apply" element={<Applicant />}/>
+          <Route path="/employer" element={<Employer />}/>
+          <Route path="/job-list" element={<JobList />}/>
           <Route path="/sellNFT" element={<SellNFT />}/>             
         </Routes>
     </div>
