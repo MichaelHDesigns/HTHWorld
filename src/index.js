@@ -21,6 +21,7 @@ import Profile from './components/Profile';
 import Applicant from './components/Applicant';
 import Employer from './components/Employer';
 import JobList from './components/JobList';
+import Faucet from './components/Faucet';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -40,6 +41,7 @@ root.render(
           <Route path="/apply" element={<Applicant />}/>
           <Route path="/employer" element={<Employer />}/>
           <Route path="/joblist" element={<JobList />}/>
+          <Route path="/faucet" element={<Faucet />}/> 
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

@@ -13,6 +13,7 @@ import Profile from './components/Profile';
 import Applicant from './components/Applicant';
 import Employer from './components/Employer';
 import JobList from './components/JobList';
+import Faucet from './components/Faucet';
 import ReactDOM from "react-dom/client";
 import {
   BrowserRouter,
@@ -36,7 +37,8 @@ function App() {
           <Route path="/apply" element={<Applicant />}/>
           <Route path="/employer" element={<Employer />}/>
           <Route path="/job-list" element={<JobList />}/>
-          <Route path="/sellNFT" element={<SellNFT />}/>             
+          <Route path="/sellNFT" element={<SellNFT />}/> 
+          <Route path="/faucet" element={<Faucet />}/>            
         </Routes>
     </div>
   );

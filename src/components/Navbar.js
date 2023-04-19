@@ -126,6 +126,9 @@ function Navbar() {
           <li>
             <Link to="/profile">Profile</Link>
           </li>
+          <li>
+            <Link to="/faucet">Faucet</Link>
+          </li>
           <li className="dropdown">
             <a href="#">Info</a>
             <ul>
@@ -138,6 +141,7 @@ function Navbar() {
             </ul>
           </li>
               </ul>
+
       </nav>
 
   <button onClick={connectWebsite} className="connect-button">
