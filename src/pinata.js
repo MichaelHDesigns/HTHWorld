@@ -3,38 +3,32 @@ const secret = process.env.REACT_APP_PINATA_SECRET;
 
 const axios = require('axios');
 const FormData = require('form-data');
+const { RateLimiterMemory } = require('rate-limiter-flexible');
 
-export const uploadJSONToIPFS = async(JSONBody) => {
-    const url = `https://api.pinata.cloud/pinning/pinJSONToIPFS`;
-    //making axios POST request to Pinata ⬇️
-    return axios 
-        .post(url, JSONBody, {
-            headers: {
-                pinata_api_key: key,
-                pinata_secret_api_key: secret,
-                'Access-Control-Allow-Origin': '*'
-            }
-        })
-        .then(function (response) {
-           return {
-               success: true,
-               pinataURL: "https://gateway.pinata.cloud/ipfs/" + response.data.IpfsHash
-           };
-        })
-        .catch(function (error) {
-            console.log(error)
-            return {
-                success: false,
-                message: error.message,
-            }
-
-    });
+// Create a new rate limiter with memory store
+const opts = {
+  points: 10, // Number of requests
+  duration: 60, // Per minute
 };
+const rateLimiter = new RateLimiterMemory(opts);
 
 export const uploadFileToIPFS = async(file) => {
     const url = `https://api.pinata.cloud/pinning/pinFileToIPFS`;
-    //making axios POST request to Pinata ⬇️
-    
+
+    // Get client's IP address
+    const clientIp = await axios.get('https://api.ipify.org');
+
+    // Consume 1 point from the rate limiter for this IP address
+    try {
+        await rateLimiter.consume(clientIp.data);
+    } catch (rejRes) {
+        console.log(`Too many requests for ${clientIp.data}`);
+        return {
+            success: false,
+            message: 'Too many requests. Please try again later.'
+        };
+    }
+
     let data = new FormData();
     data.append('file', file);
 
@@ -46,7 +40,6 @@ export const uploadFileToIPFS = async(file) => {
     });
     data.append('pinataMetadata', metadata);
 
-    //pinataOptions are optional
     const pinataOptions = JSON.stringify({
         cidVersion: 0,
         customPinPolicy: {
@@ -64,7 +57,7 @@ export const uploadFileToIPFS = async(file) => {
     });
     data.append('pinataOptions', pinataOptions);
 
-    return axios 
+    return axios
         .post(url, data, {
             maxBodyLength: 'Infinity',
             headers: {
